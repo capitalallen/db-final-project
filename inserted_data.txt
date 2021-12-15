@@ -1,0 +1,81 @@
+USE same_db; 
+
+INSERT INTO hhzz_insurance VALUES (100,'Trip Cancellation',
+"If you're unable to take a trip, we will reimburse you for your prepaid, ",200); 
+
+INSERT INTO hhzz_insurance VALUES (101,'Trip Interruption',
+"refund lost prepaid costs, minus any available refunds",100); 
+
+INSERT INTO hhzz_insurance VALUES (102,'Medical Insurance',
+"pays for emergency medical expenses during a trip",70); 
+
+classes
+INSERT INTO hhzz_cab_cls VALUES (3,'Business Class',"high-quality food and drink"); 
+
+INSERT INTO hhzz_cab_cls VALUES (4,'First Class','access to exclusive lounges, car service accommodations'); 
+
+INSERT INTO hhzz_cab_cls VALUES (1,'Economy Class','main cabin'); 
+INSERT INTO hhzz_cab_cls VALUES (2,'Economy Plus Class','up to 6 inches (15 cm) of extra legroom'); 
+
+
+mean plan
+INSERT INTO hhzz_meal_pl VALUES (1,'Indian Vegetarian Meal (AVML)',''); 
+
+
+
+AIRPORT 
+INSERT INTO hhzz_airport VALUES (1,'John F Kennedy International','JFK','New York','United States','L');  
+
+-- USE same_db; 
+-- SELECT * FROM hhzz_airport;
+
+-- INSERT INTO hhzz_airport VALUES (2,'Toronto Pearson International Airport','YYZ','Toronto','Canada','L');
+-- INSERT INTO hhzz_airline VALUES (1,'Air Canada','YYZ','Quebec', 'Canada',2);
+SELECT * FROM hhzz_model;
+SELECT * FROM hhzz_airline;
+SELECT * FROM hhzz_flight;
+-- INSERT INTO hhzz_airl_mod VALUES (3,1);
+-- airl_id f_id, f_number
+INSERT INTO hhzz_flight VALUES (1,2,'AC1647');
+
+-- USE same_db; 
+-- SELECT * FROM hhzz_airport;
+
+-- INSERT INTO hhzz_airport VALUES (2,'Toronto Pearson International Airport','YYZ','Toronto','Canada','L');
+-- INSERT INTO hhzz_airline VALUES (1,'Air Canada','YYZ','Quebec', 'Canada',2);
+SELECT * FROM hhzz_payment;
+SELECT * FROM hhzz_invoice;
+SELECT * FROM hhzz_insurance;
+ALTER TABLE hhzz_invoice DROP FOREIGN KEY invoice_insurance_fk; 
+-- INSERT INTO hhzz_airl_mod VALUES (3,1);
+-- 100
+ALTER TABLE hhzz_invoice DROP COLUMN ins_id_2;
+-- ALTER TABLE hhzz_invoice ADD CONSTRAINT invoice_insurance_fk FOREIGN KEY (ins_id) REFERENCES hhzz_insurance (ins_id);
+INSERT INTO hhzz_invoice VALUES (1,'2021-7-04',300,100);
+INSERT INTO hhzz_invoice VALUES (2,'2021-7-15',330,101);
+INSERT INTO hhzz_payment VALUES (2,'2021-7-04',300,'C','374245455400126','Allen','Zhang',2);
+
+SELECT * FROM hhzz_passenger;
+INSERT INTO hhzz_passenger VALUES (1,'Allen','Zhang','China','M','533380006','2025-11-01','P');
+INSERT INTO hhzz_passenger VALUES (2,'Adams','Baker','USA','M','533380010','2024-11-01','C');
+INSERT INTO hhzz_passenger VALUES (3,'Clark','Davis','USA','W','533380011','2030-11-01','C');
+INSERT INTO hhzz_passenger VALUES (4,'Jones','Irwin','Canada','M','533380100','2024-10-01','B');
+INSERT INTO hhzz_passenger VALUES (5,'Klein','Nalty','Inda','M','533381010','2023-11-01','M');
+
+
+INSERT INTO hhzz_customer VALUES (3,2,'Richmond St','New York','USA',
+'Clark@gmail.com',2295472205,'C','0001',2,'Clark','David Senior',2293041243,'1','C');
+INSERT INTO hhzz_customer VALUES (4,3,'Cherry St','New York','USA',
+'Jones@gmail.com',2291472205,'M','0001',2,'Jone','Clark',4293041243,'1','C');
+INSERT INTO hhzz_customer VALUES (4,4,'Tandon St','Toronto','Canada',
+'Jones@gmail.com',2291472205,'B','0001',2,'Jonathan','Lee',5196972638,'1','B');
+INSERT INTO hhzz_customer VALUES (5,5,'Amazing St','Mumbai','India',
+'hello@gmail.com',2291472205,'M','0001',2,'Aarav','Aarush',1196972638,'91','M');
+
+SELECT * FROM hhzz_passenger;
+SELECT * FROM hhzz_pass_ins;
+SELECT * FROM hhzz_insurance;
+SELECT * FROM hhzz_flight_psngr;
+SELECT * FROM hhzz_spcl_req;
+INSERT INTO hhzz_pass_ins VALUES (103,'2021-05-03',6);
+INSERT INTO hhzz_flight_psngr VALUES (1,1,1,'P',2,1,2);

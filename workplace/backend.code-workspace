@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../backend/nodejs_server"
+		},
+		{
+			"path": "../../project2/code/nodejs-mysql"
+		}
+	],
+	"settings": {}
+}
