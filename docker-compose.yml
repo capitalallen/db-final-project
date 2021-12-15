@@ -14,7 +14,7 @@ services:
       context: ./frontend/db-project/
       dockerfile: Dockerfile 
     volumes:
-      - './:/app1'
+      - '/app1'
       - '/app1/node_modules'
     ports:
       - 3001:3000
@@ -28,7 +28,7 @@ services:
       context: ./frontend/customer/
       dockerfile: Dockerfile 
     volumes:
-      - './:/app'
+      - '/app'
       - '/app/node_modules'
     ports:
       - 3000:3000
