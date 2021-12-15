@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const path="http://34.125.210.186:5000/api/v1/";
-const path="http://localhost:5000/api/v1/";
+const path="http://34.125.210.186:5000/api/v1/";
+// const path="http://localhost:5000/api/v1/";
 export const get_insurance = async()=>{
     const data = await axios.get(path+"get_insurance"); 
     if (data.data)
