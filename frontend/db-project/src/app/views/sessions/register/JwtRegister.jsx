@@ -12,7 +12,7 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import useAuth from 'app/hooks/useAuth'
 import history from 'history.js'
-
+import {signup} from '../apis';
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
         background: '#1A2038',
@@ -27,7 +27,6 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 const JwtRegister = () => {
     const [state, setState] = useState({})
     const classes = useStyles()
-    const { register } = useAuth()
 
     const handleChange = ({ target: { name, value } }) => {
         setState({
@@ -36,14 +35,17 @@ const JwtRegister = () => {
         })
     }
 
-    const handleFormSubmit = (event) => {
-        try {
-            register(state.email, state.username, state.password)
-            history.push('/')
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    // const handleFormSubmit = (event) => {
+    //     try {
+    //         signup(state.email,state.password).then(res=>{
+    //             if (res){
+    //                 history.push('/')
+    //             }
+    //         })
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
     let { username, email, password, agreement } = state
 
@@ -67,19 +69,7 @@ const JwtRegister = () => {
                     </Grid>
                     <Grid item lg={7} md={7} sm={7} xs={12}>
                         <div className="p-8 h-full">
-                            <ValidatorForm onSubmit={handleFormSubmit}>
-                                <TextValidator
-                                    className="mb-6 w-full"
-                                    variant="outlined"
-                                    size="small"
-                                    label="Username"
-                                    onChange={handleChange}
-                                    type="text"
-                                    name="username"
-                                    value={username || ''}
-                                    validators={['required']}
-                                    errorMessages={['this field is required']}
-                                />
+                            <ValidatorForm>
                                 <TextValidator
                                     className="mb-6 w-full"
                                     variant="outlined"
@@ -132,6 +122,13 @@ const JwtRegister = () => {
                                         variant="contained"
                                         color="primary"
                                         type="submit"
+                                        onClick={()=>{
+                                            signup(state.email,state.password).then(res=>{
+                                                if (res){
+                                                    history.push('/')
+                                                }
+                                            })
+                                        }}
                                     >
                                         Sign up
                                     </Button>

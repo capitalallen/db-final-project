@@ -10,7 +10,17 @@ import flightRoutes from './routes/flight.js';
 import passengerRoutes from './routes/passenger.js';
 import statsRoutes from './routes/stats.js';
 import testRoutes from './routes/test.js'
-app.use(express.json());
+import loginRoutes from './routes/login.js';
+// app.use(function (req, res, next) {
+
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+
+//   next();
+// });
+app.use(express.json()); 
 app.use(cors())
 app.use(
     express.urlencoded({
@@ -26,6 +36,7 @@ app.use(path,flightRoutes);
 app.use(path,passengerRoutes);
 app.use(path,statsRoutes);
 app.use(path,testRoutes);
+app.use(path,loginRoutes);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

@@ -10,14 +10,7 @@ const initialState = {
 }
 
 const isValidToken = (accessToken) => {
-    if (!accessToken) {
-        return false
-    }
-
-    const decodedToken = jwtDecode(accessToken)
-    const currentTime = Date.now() / 1000
-    console.log(decodedToken)
-    return decodedToken.exp > currentTime
+    return true 
 }
 
 const setSession = (accessToken) => {

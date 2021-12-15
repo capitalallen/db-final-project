@@ -13,7 +13,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
-
+import {checkPassword} from '../apis'
+import Alert from '@mui/material/Alert';
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
         background: '#1A2038',
@@ -34,6 +35,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 
 const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
+    const [incorrect,setIncorrect]=useState(false);
     const [userInfo, setUserInfo] = useState({
         email: 'jason@ui-lib.com',
         password: 'dummyPass',
@@ -50,10 +52,17 @@ const JwtLogin = () => {
     }
 
     const handleFormSubmit = async (event) => {
-        setLoading(true)
+        setLoading(false)
         try {
-            await login(userInfo.email, userInfo.password)
-            history.push('/')
+            // login 
+            const res = await checkPassword(userInfo.email,userInfo.password)
+            if (res.length){
+                await login("jason@ui-lib.com", "dummyPass")
+                setIncorrect(false);
+                history.push('/')
+            } else {
+                setIncorrect(true)
+            }
         } catch (e) {
             console.log(e)
             setMessage(e.message)
@@ -131,7 +140,6 @@ const JwtLogin = () => {
                                     }
                                     label="Remeber me"
                                 />
-
                                 {message && (
                                     <p className="text-error">{message}</p>
                                 )}
@@ -165,14 +173,7 @@ const JwtLogin = () => {
                                         Sign up
                                     </Button>
                                 </div>
-                                <Button
-                                    className="text-primary"
-                                    onClick={() =>
-                                        history.push('/session/forgot-password')
-                                    }
-                                >
-                                    Forgot password?
-                                </Button>
+                                {incorrect?<Alert severity="error">Wrong Username or Password</Alert>:null}
                             </ValidatorForm>
                         </div>
                     </Grid>

@@ -7,7 +7,7 @@ import {
   insertFlightPassenger,
   insertPaymentInfo,
   insertInvoiceIndex,
-  insertPassengerInsurance
+  insertPassengerInsurance,
 } from "../controllers/passenger.js";
 import { Router } from "express";
 const router = Router();

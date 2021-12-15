@@ -131,15 +131,6 @@ export default function Paymentdialog(props) {
                     >
                         Pay
                     </Button>
-                    <Button
-                        onClick={() => {
-                            // object - invoice
-                            // object - payment
-                        }}
-                        autoFocus
-                    >
-                        Test
-                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
