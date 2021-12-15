@@ -23,12 +23,16 @@ services:
   #     - CHOKIDAR_USEPOLLING=true
   #   command: npm start
   frontendcustomer:
+    container_name: customer
+    build: 
+      context: ./frontend/customer/
+      dockerfile: Dockerfile 
+    volumes:
+      - '/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-    build:
-      dockerfile: Dockerfile
-      context: ./frontend/customer/
-    volumes:
-      - /app/node_modules
-      - ./client:/app
+    command: npm start
