@@ -8,3 +8,31 @@ services:
     restart: always 
     ports:
       - '5000:5000'
+  frontendCustomer:
+    container_name: customer
+    build: 
+      context: ./frontend/customer/
+      dockerfile: Dockerfile 
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+  frontendEmployee:
+    container_name: employee
+    build: 
+      context: ./frontend/db-project/
+      dockerfile: Dockerfile 
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3001
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
