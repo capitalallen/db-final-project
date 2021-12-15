@@ -1,0 +1,10 @@
+version: '3'
+services:
+  backend:
+    build: 
+      context: ./backend/nodejs_server
+      dockerfile: Dockerfile 
+    container_name: ms-server-db
+    restart: always 
+    ports:
+      - '3000:3000'
