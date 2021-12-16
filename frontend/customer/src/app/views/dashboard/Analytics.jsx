@@ -16,7 +16,7 @@ import {
     get_flight_num,
     get_insurance_type,
 } from '../../util'
-import {insertPassenger} from './api';
+import { insertPassenger } from './api'
 const Analytics = () => {
     const theme = useTheme()
     // insurance type
@@ -28,6 +28,15 @@ const Analytics = () => {
     const [flight, setFlight] = useState([])
     const [cabinet, setCabinet] = useState([])
     const [insuranceType, setInsuranceType] = useState([])
+    const [unitPrice, setUnitPrice] = useState(1000)
+    const getPrice = (arr,index) => {
+        for (var i of arr) {
+            if (i.ins_id==index){
+                setUnitPrice(parseInt(i.ins_cost))
+                break;
+            }
+        }
+    }
     useEffect(() => {
         const fetchData = async () => {
             const mealData = await get_meal_plan()
@@ -48,6 +57,7 @@ const Analytics = () => {
     // })
     const handleChange = (event) => {
         setInstype(event.target.value)
+        getPrice(insuranceType,event.target.value)
     }
     const savePassenger = (data) => {
         data.ins_id = instype
@@ -60,19 +70,19 @@ const Analytics = () => {
             today.getDate()
         data.inv_date = today
         data.insurance_type = insuranceType[instype]
-        setPrice((passengers.length + 1) * 100)
-        data.inv_amt = (passengers.length + 1) * 100
+        setPrice((passengers.length + 1) * unitPrice)
+        data.inv_amt = (passengers.length + 1) * unitPrice
         data.c_pass_cnt = passengers.length + 1
         setPassengers([...passengers, data])
     }
-    const deletePassenger =(index)=>{
-        let newArr=[];
-        for (var i=0;i<passengers.length;i++){
-            if (i!=index){
+    const deletePassenger = (index) => {
+        let newArr = []
+        for (var i = 0; i < passengers.length; i++) {
+            if (i != index) {
                 newArr.push(passengers[i])
             }
         }
-        setPassengers(newArr);
+        setPassengers(newArr)
     }
     const [open, setOpen] = useState(false)
 
@@ -158,20 +168,18 @@ const Analytics = () => {
                     cabinet={cabinet}
                     addPassenger={savePassenger}
                 />
-                <DisplayPassengers passengers={passengers} deletePassenger={deletePassenger} />
-                {/* <button
+                <DisplayPassengers
+                    passengers={passengers}
+                    deletePassenger={deletePassenger}
+                />
+                <button
                     onClick={() => {
                         // define passenger obj
-                        for (let passenger of passengers) {
-                            insertPassenger(passenger).then(res=>{
-                                console.log(res)
-                            })
-            
-                        }
+                        console.log(unitPrice)
                     }}
                 >
                     wefwef
-                </button> */}
+                </button>
             </div>
         </div>
     )

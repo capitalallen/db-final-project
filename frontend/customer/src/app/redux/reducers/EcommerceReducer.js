@@ -7,6 +7,7 @@ import {
     GET_CATEGORY_LIST,
     GET_RATING_LIST,
     GET_BRAND_LIST,
+    GET_USER_ID
 } from '../actions/EcommerceActions'
 
 const initialState = {
@@ -62,6 +63,12 @@ const EcommerceReducer = function (state = initialState, action) {
             return {
                 ...state,
                 cartList: [...action.payload],
+            }
+        }
+        case GET_USER_ID:{
+            return {
+                ...state,
+                u_id:action.payload
             }
         }
         default: {

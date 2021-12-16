@@ -190,3 +190,15 @@ export const add_user= async(obj)=>{
     else
         return []
 }
+
+
+///getUserOrders/:u_id
+
+export const get_c_orders= async(u_id)=>{
+    const data = await axios.get(path+"getUserOrders/"+u_id); 
+    console.log(data);
+    if (data.data)
+        return data.data
+    else
+        return []
+}

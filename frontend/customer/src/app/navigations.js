@@ -37,11 +37,11 @@ export const navigations = [
         icon: 'favorite',
         badge: { value: '30+', color: 'secondary' },
         children: [
-            {
-                name: 'Account',
-                path: '/material/autocomplete',
-                iconText: 'A',
-            },
+            // {
+            //     name: 'Account',
+            //     path: '/material/autocomplete',
+            //     iconText: 'A',
+            // },
             {
                 name: 'Orders',
                 path: '/material/buttons',

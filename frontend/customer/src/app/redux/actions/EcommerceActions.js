@@ -10,7 +10,8 @@ export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 export const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART'
 
 export const UPDATE_CART_AMOUNT = 'UPDATE_CART_AMOUNT'
-
+export const GET_USER_ID='GET_USER_ID';
+export const GET_CUSTOMER_ID='GET_CUSTOMER_ID';
 export const getProductList = () => (dispatch) => {
     axios.get('/api/ecommerce/get-product-list').then((res) => {
         dispatch({
@@ -88,3 +89,14 @@ export const updateCartAmount = (uid, productId, amount) => (dispatch) => {
             })
         })
 }
+
+
+export const getUid = (id) => {
+    return {
+        type: GET_USER_ID,
+        payload: id,
+     }
+}
+
+
+

@@ -8,7 +8,7 @@ import {
     CircularProgress,
 } from '@material-ui/core'
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator'
-
+import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
@@ -37,9 +37,10 @@ const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
     const [incorrect,setIncorrect]=useState(false);
     const [userInfo, setUserInfo] = useState({
-        email: 'jason@ui-lib.com',
-        password: 'dummyPass',
+        email: '',
+        password: '',
     })
+    const dispatch = useDispatch() 
     const [message, setMessage] = useState('')
     const { login } = useAuth()
 
@@ -59,6 +60,7 @@ const JwtLogin = () => {
             if (res.length){
                 await login("jason@ui-lib.com", "dummyPass")
                 setIncorrect(false);
+                dispatch({ type: 'GET_USER_ID',payload:res[0].u_id })
                 history.push('/')
             } else {
                 setIncorrect(true)
@@ -90,6 +92,7 @@ const JwtLogin = () => {
                     <Grid item lg={7} md={7} sm={7} xs={12}>
                         <div className="p-8 h-full bg-light-gray relative">
                             <ValidatorForm onSubmit={handleFormSubmit}>
+                                <h1>Customer Portal</h1>
                                 <TextValidator
                                     className="mb-6 w-full"
                                     variant="outlined"
