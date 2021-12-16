@@ -13,8 +13,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import history from 'history.js'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
-import {checkPassword} from '../apis'
-import Alert from '@mui/material/Alert';
+import { checkPassword } from '../apis'
+import Alert from '@mui/material/Alert'
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     cardHolder: {
         background: '#1A2038',
@@ -35,10 +35,10 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 
 const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
-    const [incorrect,setIncorrect]=useState(false);
+    const [incorrect, setIncorrect] = useState(false)
     const [userInfo, setUserInfo] = useState({
-        email: 'jason@ui-lib.com',
-        password: 'dummyPass',
+        email: 'email@email.com',
+        password: 'password',
     })
     const [message, setMessage] = useState('')
     const { login } = useAuth()
@@ -54,11 +54,11 @@ const JwtLogin = () => {
     const handleFormSubmit = async (event) => {
         setLoading(false)
         try {
-            // login 
-            const res = await checkPassword(userInfo.email,userInfo.password)
-            if (res.length){
-                await login("jason@ui-lib.com", "dummyPass")
-                setIncorrect(false);
+            // login
+            const res = await checkPassword(userInfo.email, userInfo.password)
+            if (res.length) {
+                await login('jason@ui-lib.com', 'dummyPass')
+                setIncorrect(false)
                 history.push('/')
             } else {
                 setIncorrect(true)
@@ -91,6 +91,7 @@ const JwtLogin = () => {
                     <Grid item lg={7} md={7} sm={7} xs={12}>
                         <div className="p-8 h-full bg-light-gray relative">
                             <ValidatorForm onSubmit={handleFormSubmit}>
+                                <h1>Employee Portal</h1>
                                 <TextValidator
                                     className="mb-6 w-full"
                                     variant="outlined"
@@ -163,17 +164,21 @@ const JwtLogin = () => {
                                             />
                                         )}
                                     </div>
-                                    <span className="mr-2 ml-5">or</span>
-                                    <Button
+                                    {/* <span className="mr-2 ml-5">or</span> */}
+                                    {/* <Button
                                         className="capitalize"
                                         onClick={() =>
                                             history.push('/session/signup')
                                         }
                                     >
                                         Sign up
-                                    </Button>
+                                    </Button> */}
                                 </div>
-                                {incorrect?<Alert severity="error">Wrong Username or Password</Alert>:null}
+                                {incorrect ? (
+                                    <Alert severity="error">
+                                        Wrong Username or Password
+                                    </Alert>
+                                ) : null}
                             </ValidatorForm>
                         </div>
                     </Grid>

@@ -4,10 +4,10 @@ import JwtRegister from './register/JwtRegister'
 import JwtLogin from './login/JwtLogin'
 
 const sessionRoutes = [
-    {
-        path: '/session/signup',
-        component: JwtRegister,
-    },
+    // {
+    //     path: '/session/signup',
+    //     component: JwtRegister,
+    // },
     {
         path: '/session/signin',
         component: JwtLogin,
